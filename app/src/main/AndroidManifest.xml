@@ -15,6 +15,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".WDLogin"
+            android:theme="@style/WDTheme.NoActionBar" />
+        <activity
+            android:name=".WDNavigationDrawer"
+            android:label="@string/title_activity_wdnavigation_drawer"
+            android:theme="@style/WDTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

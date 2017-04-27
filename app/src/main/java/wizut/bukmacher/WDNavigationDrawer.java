@@ -12,9 +12,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 public class WDNavigationDrawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    ListView lv_disciplines;
+    List arrayDisciplines;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +32,7 @@ public class WDNavigationDrawer extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,6 +41,22 @@ public class WDNavigationDrawer extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
+        */
+
+        arrayDisciplines = new ArrayList<>();
+        arrayDisciplines.add("Piłka nożna");
+        arrayDisciplines.add("Siatkówka");
+        arrayDisciplines.add("Piłka ręczna");
+        arrayDisciplines.add("Koszykówka");
+        arrayDisciplines.add("Hokej");
+        arrayDisciplines.add("Żużel");
+        arrayDisciplines.add("Baseball");
+        arrayDisciplines.add("Sporty zimowe");
+
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, R.layout.list_element, R.id.lv_element, arrayDisciplines);
+
+        lv_disciplines = (ListView) findViewById(R.id.lv_disciplines);
+        lv_disciplines.setAdapter(arrayAdapter);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
