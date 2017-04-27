@@ -1,9 +1,13 @@
 <resources>
-    <string name="app_name">Bukmacher</string>
-    <string name="title_activity_wdnavigation_drawer">Bukmacher</string>
+    <string name="app_name">bet&amp;WIn</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Ustawienia</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_main">bet&amp;WIn</string>
+    <string name="bets">Bets</string>
+    <string name="my_bets">My bets</string>
+    <string name="my_account">My account</string>
+    <string name="settings">Settings</string>
 </resources>
