@@ -4,10 +4,10 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
     <string name="title_activity_main">bet&amp;WIn</string>
     <string name="bets">Bets</string>
     <string name="my_bets">My bets</string>
     <string name="my_account">My account</string>
     <string name="settings">Settings</string>
+    <string name="action_refresh">Refresh</string>
 </resources>

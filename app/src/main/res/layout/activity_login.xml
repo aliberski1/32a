@@ -80,7 +80,7 @@
         android:layout_alignEnd="@+id/tv_password" />
 
     <TextView
-        android:text="Bukmacher"
+        android:text="bet&amp;WIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView2"
