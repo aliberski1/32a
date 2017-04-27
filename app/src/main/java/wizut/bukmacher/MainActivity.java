@@ -105,6 +105,8 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_my_account) {
 
+        } else if (id == R.id.nav_my_stats) {
+
         } else if (id == R.id.nav_settings) {
 
         }
