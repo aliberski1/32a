@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity
         View header = navigationView.getHeaderView(0);
         tv_name = (TextView) header.findViewById(R.id.tv_name);
         tv_login = (TextView) header.findViewById(R.id.tv_login);
-        tv_name.setText(settings.getString("name", "Imię i nazwisko") + " " + settings.getString("surname", "Imię"));
+        tv_name.setText(settings.getString("name", "Imię i ") + " " + settings.getString("surname", "Imię"));
         tv_login.setText(settings.getString("login", "Login"));
 
     }
