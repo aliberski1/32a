@@ -1,6 +1,8 @@
 package wizut.bukmacher;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -12,9 +14,13 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +29,10 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     ListView lv_main;
+    TextView tv_name, tv_login;
     List arrayMain;
     Context context;
+    String PREFS_NAME = "MyPreferences";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +40,15 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+
+        if (settings.getBoolean("first_launch", true)) {
+
+            Intent intent = new Intent(this, Login.class);
+            startActivity(intent);
+            settings.edit().putBoolean("first_launch", false).commit();
+        }
 
         context = getBaseContext();
 
@@ -50,6 +67,7 @@ public class MainActivity extends AppCompatActivity
         lv_main = (ListView) findViewById(R.id.lv_main);
         lv_main.setAdapter(arrayAdapter);
 
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -58,6 +76,12 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View header = navigationView.getHeaderView(0);
+        tv_name = (TextView) header.findViewById(R.id.tv_name);
+        tv_login = (TextView) header.findViewById(R.id.tv_login);
+        tv_name.setText(settings.getString("name", "Imię i nazwisko") + " " + settings.getString("surname", "Imię"));
+        tv_login.setText(settings.getString("login", "Login"));
+
     }
 
     @Override
@@ -100,7 +124,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_bets) {
-            // Handle the camera action
+
         } else if (id == R.id.nav_my_bets) {
 
         } else if (id == R.id.nav_my_account) {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_wdlogin"
     android:layout_width="match_parent"
@@ -8,8 +9,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@color/orange"
+    android:background="@drawable/login_background"
     tools:context="wizut.bukmacher.Login">
+
 
     <EditText
         android:layout_width="match_parent"
@@ -20,14 +22,14 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textColor="#fffdfb"
-        android:id="@+id/et_login"
-        android:hint="Login" />
+        android:id="@+id/et_name"
+        android:hint="Your name" />
 
     <TextView
-        android:text="Hasło"
+        android:text="Surname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/et_login"
+        android:layout_below="@+id/et_name"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textColor="#fffdfb"
@@ -36,59 +38,85 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
+        android:inputType="text"
         android:ems="10"
         android:layout_below="@+id/tv_password"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textColor="#fffdfb"
-        android:id="@+id/editText2"
-        android:hint="Hasło" />
-
-    <Button
-        android:text="Zaloguj"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editText2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:background="@color/orangeDark"
-        android:textColor="#fffdfb"
-        android:id="@+id/btn_login" />
-
-    <TextView
-        android:text="Nie masz jeszcze konta? Zarejestruj teraz!"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#fffdfb"
-        android:id="@+id/tv_register"
-        android:textAlignment="center"
-        android:layout_below="@+id/btn_login"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="18dp" />
+        android:id="@+id/et_surname"
+        android:hint="Your surname" />
 
     <TextView
         android:text="Login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#fffdfb"
+        android:id="@+id/textView"
+        android:layout_below="@+id/et_surname"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:ems="10"
+        android:textColor="#fffdfb"
+        android:id="@+id/et_login"
+        android:hint="Your login"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#fffdfb"
         android:id="@+id/tv_login"
-        android:layout_marginTop="41dp"
-        android:layout_below="@+id/textView2"
-        android:layout_alignRight="@+id/tv_password"
-        android:layout_alignEnd="@+id/tv_password" />
+        android:layout_below="@+id/tv_name"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="23dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        app:srcCompat="@drawable/target"
+        android:id="@+id/imageView3"
+        android:layout_marginTop="11dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_height="150dp" />
 
     <TextView
         android:text="bet&amp;WIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2"
+        android:id="@+id/tv_name"
         android:textSize="36sp"
         android:textAlignment="center"
         android:textColor="@color/grey"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/tv_login"
-        android:layout_alignStart="@+id/tv_login"
-        android:layout_marginTop="34dp" />
+        android:fontFamily="sans-serif-thin"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/imageView3"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="12dp"
+        android:layout_marginEnd="12dp" />
+
+    <Button
+        android:text="Create account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/orange"
+        android:textColor="#fffdfb"
+        android:id="@+id/btn_login"
+        android:layout_marginBottom="19dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
 </RelativeLayout>
