@@ -44,10 +44,8 @@ public class MainActivity extends AppCompatActivity
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
 
         if (settings.getBoolean("first_launch", true)) {
-
             Intent intent = new Intent(this, Login.class);
             startActivity(intent);
-            settings.edit().putBoolean("first_launch", false).commit();
         }
 
         context = getBaseContext();

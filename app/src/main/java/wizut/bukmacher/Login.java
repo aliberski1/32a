@@ -56,6 +56,7 @@ public class Login extends AppCompatActivity {
                     settings.edit().putString("name", name.getText().toString()).commit();
                     settings.edit().putString("surname", surName.getText().toString()).commit();
                     settings.edit().putString("login", login.getText().toString()).commit();
+                    settings.edit().putBoolean("first_launch", false).commit();
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                 }
