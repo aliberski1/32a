@@ -16,7 +16,9 @@ public class User implements Serializable {
     private String address;
     private String card_number;
     private float balance;
+
     public User(){}
+
     public User(String nick, String password, String email, String name, String surname, String address, String card_number, float balance) {
         super();
         this.nick = nick;
@@ -32,6 +34,7 @@ public class User implements Serializable {
     public String toString() {
         return "User: [id=" + id + ", nick=" + nick + ", password=" + password + ", email=" + email + ", name=" + name + ", surname=" + surname + ", address=" + address + ", card_number=" + card_number + ", balance=" + balance +" ]";
     }
+
     //Metoda zwracająca opis usera
     public String getNick() { return nick; }
     public String getPassword() { return password; }
