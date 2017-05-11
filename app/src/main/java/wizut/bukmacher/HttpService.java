@@ -1,4 +1,4 @@
-package com.example.lifesgood.servicehttp;
+package wizut.bukmacher;
 
 import android.app.IntentService;
 import android.app.PendingIntent;
@@ -62,9 +62,9 @@ public class HttpService extends IntentService {
             //Uzycie RSA
             // klasa Config tworzy i obsługuje bazę danych z konfiguracją aplikacji
 
-            Config conf = new Config(getApplicationContext());
+            /*Config conf = new Config(getApplicationContext());
             conn.setRequestProperty("PKEY", conf.getPublic().replace("\n",""));
-            conn.setRequestProperty("SIGN", conf.sign(urlstr).replace("\n",""));
+            conn.setRequestProperty("SIGN", conf.sign(urlstr).replace("\n",""));*/
 
             //Dodanie parametrow do żądania
             String params = intent.getStringExtra(HttpService.PARAMS);
