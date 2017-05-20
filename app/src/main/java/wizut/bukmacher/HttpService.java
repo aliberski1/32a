@@ -45,7 +45,7 @@ public class HttpService extends IntentService {
 
             //Tworzenie obiektu url ze stringa
             String urlstr = intent.getStringExtra(HttpService.URL);
-            URL url = new URL(urlstr);
+            URL url = new URL("http://api.football-data.org/index/c2ba64b46cae4d4b929dadc73bc703c0");
             //Przygotowanie polaczenia
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             //Ustawienie metody polaczenia
