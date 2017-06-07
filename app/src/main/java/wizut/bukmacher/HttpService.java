@@ -12,30 +12,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class HttpService extends IntentService {
-    //Flagi - nie potrzebne
-    public static final int GAMES_LIST = 1;
-    public static final int IN_ROW = 2;
-    public static final int REFRESH = 3;
-    public static final int GAME_INFO = 4;
-    public static final String URL = "URL";
-    public static final String METHOD = "Method";
-    public static final String PARAMS = "Params";
     public static final String RETURN = "Return";
     public static final String RESPONSE = "Response";
-    public static final String LINES = "http://antons.pl/games/lines/";
-    public static final String XO = "http://antons.pl/games/xo/";
-    public static final int GET = 1;
-    public static final int POST = 2;
-    public static final int PUT = 3;
-
-    // Link API
-    // //http://www.footytube.com/openfooty/
-    //https://www.pinnacle.com/en/api/
-
 
     //Konstruktor
     public HttpService() {
-
         super("HTTP calls handler");
     }
 
@@ -44,37 +25,12 @@ public class HttpService extends IntentService {
         try {
 
             //Tworzenie obiektu url ze stringa
-            String urlstr = intent.getStringExtra(HttpService.URL);
-            URL url = new URL("http://api.football-data.org/index/c2ba64b46cae4d4b929dadc73bc703c0");
+            URL url = new URL("http://api.football-data.org/v1/competitions");
+
             //Przygotowanie polaczenia
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            //Ustawienie metody polaczenia
-            switch (intent.getIntExtra(HttpService.METHOD,1)){
-                case HttpService.POST:
-                    conn.setRequestMethod("POST");
-                    break;
-                case HttpService.PUT:
-                    conn.setRequestMethod("PUT");
-                    break;
-                default:
-                    conn.setRequestMethod("GET");
-            }
-            //Uzycie RSA
-            // klasa Config tworzy i obsługuje bazę danych z konfiguracją aplikacji
 
-            /*Config conf = new Config(getApplicationContext());
-            conn.setRequestProperty("PKEY", conf.getPublic().replace("\n",""));
-            conn.setRequestProperty("SIGN", conf.sign(urlstr).replace("\n",""));*/
-
-            //Dodanie parametrow do żądania
-            String params = intent.getStringExtra(HttpService.PARAMS);
-            if(params!=null) {
-                conn.setDoOutput(true);
-                OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream());
-                writer.write(params);
-                writer.flush();
-                writer.close();
-            }
+            conn.setRequestMethod("GET");
             //wysłanie żądania
             conn.connect();
 
@@ -94,6 +50,7 @@ public class HttpService extends IntentService {
                 }
                 reader.close();
             }
+
             //Zamkniecie polaczenia
             conn.disconnect();
 
@@ -101,7 +58,7 @@ public class HttpService extends IntentService {
             Intent returns = new Intent();
             returns.putExtra(HttpService.RESPONSE, response);
             PendingIntent reply = intent.getParcelableExtra(HttpService.RETURN);
-            reply.send(this, responseCode, returns);
+            reply.send(getApplicationContext(), responseCode, returns);
 
         }catch (Exception ex){
 

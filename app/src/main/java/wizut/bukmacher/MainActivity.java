@@ -1,5 +1,6 @@
 package wizut.bukmacher;
 
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,9 +21,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.io.BufferedInputStream;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
@@ -31,6 +39,7 @@ public class MainActivity extends AppCompatActivity
     ListView lv_main;
     TextView tv_name, tv_login;
     List arrayMain;
+    ArrayAdapter arrayAdapter;
     Context context;
     String PREFS_NAME = "MyPreferences";
 
@@ -51,16 +60,16 @@ public class MainActivity extends AppCompatActivity
         context = getBaseContext();
 
         arrayMain = new ArrayList<>();
-        arrayMain.add("Football");
+        /*arrayMain.add("Football");
         arrayMain.add("Volleyball");
         arrayMain.add("Handball");
         arrayMain.add("Basketball");
         arrayMain.add("Tennis");
         arrayMain.add("Hockey");
         arrayMain.add("Baseball");
-        arrayMain.add("Winter sports");
+        arrayMain.add("Winter sports");*/
 
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, R.layout.list_element, R.id.lv_element, arrayMain);
+        arrayAdapter = new ArrayAdapter(this, R.layout.list_element, R.id.lv_element, arrayMain);
 
         lv_main = (ListView) findViewById(R.id.lv_main);
         lv_main.setAdapter(arrayAdapter);
@@ -80,6 +89,28 @@ public class MainActivity extends AppCompatActivity
         tv_name.setText(settings.getString("name", "Imię i ") + " " + settings.getString("surname", "Imię"));
         tv_login.setText(settings.getString("login", "Login"));
 
+        //Uruchamianie serwisu
+        Intent intent = new Intent(this, HttpService.class);
+        PendingIntent pendingResult = createPendingResult(0, new Intent(),0);
+        intent.putExtra(HttpService.RETURN, pendingResult);
+        startService(intent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        try {
+            JSONArray jsonArray = new JSONArray(data.getStringExtra(HttpService.RESPONSE));
+            for(int i=0; i < jsonArray.length();i++)
+            {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                arrayMain.add(jsonObject.optString("caption"));
+            }
+
+            arrayAdapter.notifyDataSetChanged();
+
+        } catch(Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     @Override

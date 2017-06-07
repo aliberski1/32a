@@ -1,3 +1,5 @@
+package wizut.bukmacher;
+
 public class KlasaStawek{
 
     private double stawka;
@@ -5,18 +7,18 @@ public class KlasaStawek{
     private int godziny_pozostale_do_meczu;//pobrac aktualna godzine
     private int ilosc_obstawien_na_mecz;
 
-    public int getMatchTime(string match){
-        int time;
+    public int getMatchTime(String match){
+        int time = 0;
         return time;
     }
-    public int getMatchBets(string match){
-        int bets;
+    public int getMatchBets(String match){
+        int bets = 0;
         return bets;
     }
-    public double Calculate(string match){
+    public double Calculate(String match){
 
-        godziny_pozostale_do_meczu=getMatchTime(string match);
-        ilosc_obstawien_na_mecz=getMatchBets(string match);
+        godziny_pozostale_do_meczu=getMatchTime(match);
+        ilosc_obstawien_na_mecz=getMatchBets(match);
         stawka=stawka_poprzednia + godziny_pozostale_do_meczu * 0.1 - ilosc_obstawien_na_mecz * 0.1;
         stawka_poprzednia=stawka;
 
