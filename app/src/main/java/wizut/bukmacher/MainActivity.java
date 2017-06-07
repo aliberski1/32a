@@ -122,7 +122,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_bets) {
-
+            //Intent intent = new Intent(getApplicationContext(), ActivityMeczu.class);
+           // startActivity(intent);
         } else if (id == R.id.nav_my_bets) {
 
         } else if (id == R.id.nav_my_account) {
@@ -137,4 +138,5 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }
