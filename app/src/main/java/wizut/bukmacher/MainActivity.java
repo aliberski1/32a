@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity
     ListView lv_main;
     TextView tv_name, tv_login;
     List arrayMain;
+    List arrayId;
     ArrayAdapter arrayAdapter;
     Context context;
     String PREFS_NAME = "MyPreferences";
@@ -59,7 +61,8 @@ public class MainActivity extends AppCompatActivity
 
         context = getBaseContext();
 
-        arrayMain = new ArrayList<>();
+        arrayMain = new ArrayList<String>();
+        arrayId = new ArrayList<>();
         /*arrayMain.add("Football");
         arrayMain.add("Volleyball");
         arrayMain.add("Handball");
@@ -70,10 +73,8 @@ public class MainActivity extends AppCompatActivity
         arrayMain.add("Winter sports");*/
 
         arrayAdapter = new ArrayAdapter(this, R.layout.list_element, R.id.lv_element, arrayMain);
-
         lv_main = (ListView) findViewById(R.id.lv_main);
         lv_main.setAdapter(arrayAdapter);
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -94,6 +95,15 @@ public class MainActivity extends AppCompatActivity
         PendingIntent pendingResult = createPendingResult(0, new Intent(),0);
         intent.putExtra(HttpService.RETURN, pendingResult);
         startService(intent);
+
+        lv_main.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), ListOfMatchActivity.class);
+                intent.putExtra(HttpService.ID, arrayId.get(position).toString());
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -104,6 +114,7 @@ public class MainActivity extends AppCompatActivity
             {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 arrayMain.add(jsonObject.optString("caption"));
+                arrayId.add(jsonObject.optString("id"));
             }
 
             arrayAdapter.notifyDataSetChanged();

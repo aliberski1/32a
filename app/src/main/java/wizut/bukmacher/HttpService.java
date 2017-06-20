@@ -14,6 +14,8 @@ import java.net.URL;
 public class HttpService extends IntentService {
     public static final String RETURN = "Return";
     public static final String RESPONSE = "Response";
+    public static final String ID = "Id";
+    public String API = "http://api.football-data.org/v1/competitions";
 
     //Konstruktor
     public HttpService() {
@@ -24,8 +26,11 @@ public class HttpService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         try {
 
+            if(intent.getStringExtra(ID) != null) {
+                API = "http://api.football-data.org/v1/competitions/" + intent.getStringExtra(ID) + "/teams";
+            }
             //Tworzenie obiektu url ze stringa
-            URL url = new URL("http://api.football-data.org/v1/competitions");
+            URL url = new URL(API);
 
             //Przygotowanie polaczenia
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();

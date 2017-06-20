@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 
 /**
  * Class providing list of leagues available through selected API. Exposes only
@@ -77,7 +78,7 @@ public class LeagueList {
 	 * @param json — JSON response from aforementioned API.
 	 * @return       String[] with codes of all leagues.
 	 */
-	private static String[] getLeagueCodes(String json) {
+	private static String[] getLeagueCodes(String json) throws JSONException {
 		final JSONArray objectArray = new JSONArray(json);
 		final String[] leagueCodes = new String[objectArray.length()];
 		
@@ -133,6 +134,8 @@ public class LeagueList {
 			return leagues;
 		}
 		catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 		return null; // If URL constructor thrown MalformedURLException
